@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="计算机图形学," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1．实验目的： 理解直线裁剪的基本原理； 验证直线的编码裁剪算法，参考网络资料实现梁友栋-Barsky裁剪算法； 了解与掌握OpenGL鼠标操作。  2．实验内容：本次实验主要结合鼠标画线程序来验证编码裁剪算法和梁友栋-Barsky裁剪算法，具体步骤如下： （1） 阅读学习所给的编码裁剪示范代码，了解程序使用方法，并结合三种不同类型直线对其进行裁剪测试，将测试结果存为图1-3，保存至word实验文">
+<meta name="keywords" content="计算机图形学">
+<meta property="og:type" content="article">
+<meta property="og:title" content="实验3 直线裁剪算法">
+<meta property="og:url" content="http://wpxu08.com/2020/01/19/CG-Prj3-Clipping/index.html">
+<meta property="og:site_name" content="计算机图形学">
+<meta property="og:description" content="1．实验目的： 理解直线裁剪的基本原理； 验证直线的编码裁剪算法，参考网络资料实现梁友栋-Barsky裁剪算法； 了解与掌握OpenGL鼠标操作。  2．实验内容：本次实验主要结合鼠标画线程序来验证编码裁剪算法和梁友栋-Barsky裁剪算法，具体步骤如下： （1） 阅读学习所给的编码裁剪示范代码，了解程序使用方法，并结合三种不同类型直线对其进行裁剪测试，将测试结果存为图1-3，保存至word实验文">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-18T02:04:22.363Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="实验3 直线裁剪算法">
+<meta name="twitter:description" content="1．实验目的： 理解直线裁剪的基本原理； 验证直线的编码裁剪算法，参考网络资料实现梁友栋-Barsky裁剪算法； 了解与掌握OpenGL鼠标操作。  2．实验内容：本次实验主要结合鼠标画线程序来验证编码裁剪算法和梁友栋-Barsky裁剪算法，具体步骤如下： （1） 阅读学习所给的编码裁剪示范代码，了解程序使用方法，并结合三种不同类型直线对其进行裁剪测试，将测试结果存为图1-3，保存至word实验文">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wpxu08.com/2020/01/19/CG-Prj3-Clipping/"/>
+
+
+
+
+
+  <title>实验3 直线裁剪算法 | 计算机图形学</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-22244267', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">计算机图形学</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wpxu08.com/2020/01/19/CG-Prj3-Clipping/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xu Wenpeng/wpxu@outlook.com">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/light.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="计算机图形学">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">实验3 直线裁剪算法</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-01-19T16:28:10+08:00">
+                2020-01-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机图形学/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机图形学</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1．实验目的："><a href="#1．实验目的：" class="headerlink" title="1．实验目的："></a>1．实验目的：</h2><ul>
+<li>理解直线裁剪的基本原理；</li>
+<li>验证直线的编码裁剪算法，参考网络资料实现梁友栋-Barsky裁剪算法；</li>
+<li>了解与掌握OpenGL鼠标操作。</li>
+</ul>
+<h2 id="2．实验内容："><a href="#2．实验内容：" class="headerlink" title="2．实验内容："></a>2．实验内容：</h2><p>本次实验主要结合鼠标画线程序来验证编码裁剪算法和梁友栋-Barsky裁剪算法，具体步骤如下：</p>
+<p>（1） 阅读学习所给的编码裁剪示范代码，了解程序使用方法，并结合三种不同类型直线对其进行裁剪测试，将测试结果存为图1-3，保存至word实验文档中（30分钟）；</p>
+<p>（2） 为示范代码增加梁友栋-Barsky裁剪算法，并通过键盘按键“L”来控制，即按键盘“L”键时，用梁友栋-Barsky算法裁剪程序窗口内的直线。同样测试三种不同类型的直线，将测试结果存为图4-6，，保存至word实验文档中（60分钟）；</p>
+<p>（3） 整理图1-6，并增加程序代码合并到一个word文档，将其命名为“序号-姓名-Prj2.doc”，电子版提交至雨课堂，A4打印稿下一次课前或实验课前提交。</p>
+<h2 id="3．实验原理："><a href="#3．实验原理：" class="headerlink" title="3．实验原理："></a>3．实验原理：</h2><p>示范代码中编码裁剪算法原理参见教材裁剪内容，有关鼠标操作知识请参考<a href="https://www.cnblogs.com/starryxsky/p/7184032.html" target="_blank" rel="noopener">OpenGL编程 基础篇（四）与鼠标的交互</a>。</p>
+<p>4．实验代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;GL/glut.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line"></span><br><span class="line">#define LEFT_EDGE   1</span><br><span class="line">#define RIGHT_EDGE  2</span><br><span class="line">#define BOTTOM_EDGE 4</span><br><span class="line">#define TOP_EDGE    8</span><br><span class="line"></span><br><span class="line">struct Rectangle</span><br><span class="line">&#123;</span><br><span class="line">	float xmin, xmax, ymin, ymax;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Rectangle  rect;</span><br><span class="line">int x0, y0, x1, y1;</span><br><span class="line">bool bDrawLine = true;</span><br><span class="line">int width = 640, height = 480;</span><br><span class="line"></span><br><span class="line">void LineGL(int x0, int  y0, int x1, int y1)</span><br><span class="line">&#123;</span><br><span class="line">	glBegin(GL_LINES);</span><br><span class="line">	glColor3f(1.0f, 0.0f, 0.0f);   glVertex2f(x0, y0);</span><br><span class="line">	glColor3f(1.0f, 0.0f, 0.0f);   glVertex2f(x1, y1);</span><br><span class="line">	glEnd();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//求p点的编码</span><br><span class="line">int CompCode(int x, int y, Rectangle rect)</span><br><span class="line">&#123;</span><br><span class="line">	int code = 0x00;</span><br><span class="line">	if (y &lt; rect.ymin)</span><br><span class="line">		code = code | 4;//即为1000</span><br><span class="line">	if (y &gt; rect.ymax)</span><br><span class="line">		code = code | 8;//即为0100</span><br><span class="line">	if (x &gt; rect.xmax)</span><br><span class="line">		code = code | 2;</span><br><span class="line">	if (x &lt; rect.xmin)</span><br><span class="line">		code = code | 1;</span><br><span class="line">	return code;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool cohensutherlandlineclip(Rectangle  rect, int &amp;x0, int &amp; y0, int &amp;x1, int &amp;y1)</span><br><span class="line">&#123;</span><br><span class="line">	bool accept, done;</span><br><span class="line">	float x, y;</span><br><span class="line">	accept = false;</span><br><span class="line">	done = false;</span><br><span class="line"></span><br><span class="line">	int code0, code1, codeout;</span><br><span class="line">	code0 = CompCode(x0, y0, rect);</span><br><span class="line">	code1 = CompCode(x1, y1, rect);</span><br><span class="line">	do &#123;</span><br><span class="line">		if (!(code0 | code1))</span><br><span class="line">		&#123;</span><br><span class="line">			accept = true;</span><br><span class="line">			done = true;</span><br><span class="line">		&#125;</span><br><span class="line">		else if (code0 &amp; code1)</span><br><span class="line">			done = true;</span><br><span class="line">		else</span><br><span class="line">		&#123;</span><br><span class="line">			if (code0 != 0)</span><br><span class="line">				codeout = code0;</span><br><span class="line">			else</span><br><span class="line">				codeout = code1;</span><br><span class="line"></span><br><span class="line">			if (codeout&amp;LEFT_EDGE) &#123;</span><br><span class="line">				y = y0 + (y1 - y0)*(rect.xmin - x0) / (x1 - x0);</span><br><span class="line">				x = (float)rect.xmin;</span><br><span class="line">			&#125;</span><br><span class="line">			else if (codeout&amp;RIGHT_EDGE) &#123;</span><br><span class="line">				y = y0 + (y1 - y0)*(rect.xmax - x0) / (x1 - x0);</span><br><span class="line">				x = (float)rect.xmax;</span><br><span class="line">			&#125;</span><br><span class="line">			else if (codeout&amp;BOTTOM_EDGE) &#123;</span><br><span class="line">				x = x0 + (x1 - x0)*(rect.ymin - y0) / (y1 - y0);</span><br><span class="line">				y = (float)rect.ymin;</span><br><span class="line">			&#125;</span><br><span class="line">			else if (codeout&amp;TOP_EDGE) &#123;</span><br><span class="line">				x = x0 + (x1 - x0)*(rect.ymax - y0) / (y1 - y0);</span><br><span class="line">				y = (float)rect.ymax;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			if (codeout == code0)</span><br><span class="line">			&#123;</span><br><span class="line">				x0 = x; y0 = y;</span><br><span class="line">				code0 = CompCode(x0, y0, rect);</span><br><span class="line">			&#125;</span><br><span class="line">			else</span><br><span class="line">			&#123;</span><br><span class="line">				x1 = x; y1 = y;</span><br><span class="line">				code1 = CompCode(x1, y1, rect);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; while (!done);</span><br><span class="line"></span><br><span class="line">	return accept;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void myDisplay()</span><br><span class="line">&#123;</span><br><span class="line">	glClear(GL_COLOR_BUFFER_BIT);</span><br><span class="line">	glColor3f(1.0f, 1.0f, 0.0f);</span><br><span class="line">	glRectf(rect.xmin, rect.ymin, rect.xmax, rect.ymax);</span><br><span class="line"></span><br><span class="line">	if (bDrawLine)</span><br><span class="line">		LineGL(x0, y0, x1, y1);</span><br><span class="line"></span><br><span class="line">	glFlush();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void Init()</span><br><span class="line">&#123;</span><br><span class="line">	glClearColor(0.0, 0.0, 0.0, 0.0);</span><br><span class="line">	glShadeModel(GL_FLAT);</span><br><span class="line"></span><br><span class="line">	rect.xmin = 100; //窗口的大小</span><br><span class="line">	rect.xmax = 300;</span><br><span class="line">	rect.ymin = 100;</span><br><span class="line">	rect.ymax = 300;</span><br><span class="line"></span><br><span class="line">	x0 = 300, y0 = 50, x1 = 0, y1 = 450;//裁剪前的直线端点</span><br><span class="line">	printf(&quot;Press key &apos;c&apos; to Clip!\n&quot;);</span><br><span class="line">	printf(&quot;Please Click left button of mouse to input the points of Line!!\n&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void Reshape(int w, int h)</span><br><span class="line">&#123;</span><br><span class="line">	glViewport(0, 0, (GLsizei)w, (GLsizei)h);</span><br><span class="line">	glMatrixMode(GL_PROJECTION);</span><br><span class="line">	glLoadIdentity();</span><br><span class="line">	gluOrtho2D(0.0, (GLdouble)w, 0.0, (GLdouble)h);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void keyboard(unsigned char key, int x, int y)</span><br><span class="line">&#123;</span><br><span class="line">	switch (key)</span><br><span class="line">	&#123;</span><br><span class="line">	case &apos;c&apos;:</span><br><span class="line">		bDrawLine = cohensutherlandlineclip(rect, x0, y0, x1, y1);</span><br><span class="line">		glutPostRedisplay();//重画</span><br><span class="line">		break;</span><br><span class="line">	case &apos;x&apos;:</span><br><span class="line">		exit(0);</span><br><span class="line">		break;</span><br><span class="line">	default:</span><br><span class="line">		break;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void mouse(int button, int state, int x, int y)</span><br><span class="line">&#123;</span><br><span class="line">	switch (button)</span><br><span class="line">	&#123;</span><br><span class="line">	case GLUT_LEFT_BUTTON:</span><br><span class="line">		if (state == GLUT_DOWN)</span><br><span class="line">		&#123;</span><br><span class="line">			if(bDrawLine)</span><br><span class="line">			&#123;</span><br><span class="line">				x0 = x;</span><br><span class="line">				y0 = height - y;</span><br><span class="line">				bDrawLine = false;</span><br><span class="line">				glutPostRedisplay();//</span><br><span class="line">			&#125;</span><br><span class="line">			else</span><br><span class="line">			&#123;</span><br><span class="line">				x1 = x;</span><br><span class="line">				y1 = height - y;</span><br><span class="line">				bDrawLine = true;				</span><br><span class="line">				glutPostRedisplay();//</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		break;</span><br><span class="line">	default:</span><br><span class="line">		break;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">	glutInit(&amp;argc, argv);</span><br><span class="line">	glutInitDisplayMode(GLUT_RGB | GLUT_SINGLE);</span><br><span class="line">	glutInitWindowPosition(100, 100);</span><br><span class="line">	glutInitWindowSize(width, height);</span><br><span class="line">	glutCreateWindow(&quot;Hello World!&quot;);</span><br><span class="line"></span><br><span class="line">	Init();</span><br><span class="line">	glutDisplayFunc(myDisplay);</span><br><span class="line">	glutReshapeFunc(Reshape);</span><br><span class="line">	glutKeyboardFunc(keyboard);</span><br><span class="line">	glutMouseFunc(mouse);</span><br><span class="line">	glutMainLoop();</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="5．实验思考"><a href="#5．实验思考" class="headerlink" title="5．实验思考"></a>5．实验思考</h2><p>实验示范代码的第162行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y0 = height - y;</span><br></pre></td></tr></table></figure></p>
+<p>请解释这行代码的含义和作用。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat-qcode-wpxnew.jpg" alt="Xu Wenpeng/wpxu@outlook.com wechat" style="width: 200px; max-width: 100%;"/>
+    <div>Welcome to follow my public WeChat</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/计算机图形学/" rel="tag"># 计算机图形学</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/01/19/CG-Prj2-Primitive/" rel="next" title="实验2 基本图元光栅化">
+                <i class="fa fa-chevron-left"></i> 实验2 基本图元光栅化
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/01/19/CG-Prj4-2D-Transformation/" rel="prev" title="实验4 二维几何变换">
+                实验4 二维几何变换 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/light.jpg"
+                alt="Xu Wenpeng/wpxu@outlook.com" />
+            
+              <p class="site-author-name" itemprop="name">Xu Wenpeng/wpxu@outlook.com</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/wpxu08" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://weibo.com/wpxu" target="_blank" title="weibo">
+                      
+                        <i class="fa fa-fw fa-globe"></i>weibo</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.zhihu.com/people/wpxu" target="_blank" title="zhihu">
+                      
+                        <i class="fa fa-fw fa-globe"></i>zhihu</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1．实验目的："><span class="nav-number">1.</span> <span class="nav-text">1．实验目的：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2．实验内容："><span class="nav-number">2.</span> <span class="nav-text">2．实验内容：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3．实验原理："><span class="nav-number">3.</span> <span class="nav-text">3．实验原理：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5．实验思考"><span class="nav-number">4.</span> <span class="nav-text">5．实验思考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xu Wenpeng/wpxu@outlook.com</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
