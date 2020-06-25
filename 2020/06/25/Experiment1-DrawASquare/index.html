@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="计算机图形学," />
+  <meta name="keywords" content="Computer Graphics," />
 
 
 
@@ -83,18 +83,18 @@
 
 
 
-<meta name="description" content="1．FreeGlut简介：先介绍下Glut库。GLUT最初由MarkKilgard编写，从OpenGL Redbook（红宝书）第二版起就用来作为示例程序的支持环境，直到第八版为止（注：第九版开始改为GLFW）。从那时起，GLUT因为其简单、可用性广、可移植性强，被广泛应用于各种OpenGL实际应用中。Glut最新版本为3.7版，大致在1998年8月停止维护和更新，同时其代码也没有开源。Freeg">
-<meta name="keywords" content="计算机图形学">
+<meta name="description" content="1. Experiment goal Understand experiment environment and the process of experiment; Learn how to draw a square and understand its vertex drawing order.  2. Experiment contentPlease do the following co">
+<meta name="keywords" content="Computer Graphics">
 <meta property="og:type" content="article">
-<meta property="og:title" content="实验0.1 FreeGlut配置简介">
-<meta property="og:url" content="http://wpxu08.com/2020/05/20/CG实验0.1 FreeGlut配置简介/index.html">
+<meta property="og:title" content="Experiment 1 Create A Square">
+<meta property="og:url" content="http://wpxu08.com/2020/06/25/Experiment1-DrawASquare/index.html">
 <meta property="og:site_name" content="计算机图形学">
-<meta property="og:description" content="1．FreeGlut简介：先介绍下Glut库。GLUT最初由MarkKilgard编写，从OpenGL Redbook（红宝书）第二版起就用来作为示例程序的支持环境，直到第八版为止（注：第九版开始改为GLFW）。从那时起，GLUT因为其简单、可用性广、可移植性强，被广泛应用于各种OpenGL实际应用中。Glut最新版本为3.7版，大致在1998年8月停止维护和更新，同时其代码也没有开源。Freeg">
+<meta property="og:description" content="1. Experiment goal Understand experiment environment and the process of experiment; Learn how to draw a square and understand its vertex drawing order.  2. Experiment contentPlease do the following co">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-05-20T02:53:40.439Z">
+<meta property="og:updated_time" content="2020-06-25T02:44:26.116Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="实验0.1 FreeGlut配置简介">
-<meta name="twitter:description" content="1．FreeGlut简介：先介绍下Glut库。GLUT最初由MarkKilgard编写，从OpenGL Redbook（红宝书）第二版起就用来作为示例程序的支持环境，直到第八版为止（注：第九版开始改为GLFW）。从那时起，GLUT因为其简单、可用性广、可移植性强，被广泛应用于各种OpenGL实际应用中。Glut最新版本为3.7版，大致在1998年8月停止维护和更新，同时其代码也没有开源。Freeg">
+<meta name="twitter:title" content="Experiment 1 Create A Square">
+<meta name="twitter:description" content="1. Experiment goal Understand experiment environment and the process of experiment; Learn how to draw a square and understand its vertex drawing order.  2. Experiment contentPlease do the following co">
 
 
 
@@ -124,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://wpxu08.com/2020/05/20/CG实验0.1 FreeGlut配置简介/"/>
+  <link rel="canonical" href="http://wpxu08.com/2020/06/25/Experiment1-DrawASquare/"/>
 
 
 
 
 
-  <title>实验0.1 FreeGlut配置简介 | 计算机图形学</title>
+  <title>Experiment 1 Create A Square | 计算机图形学</title>
   
 
 
@@ -246,7 +246,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wpxu08.com/2020/05/20/CG实验0.1 FreeGlut配置简介/">
+    <link itemprop="mainEntityOfPage" href="http://wpxu08.com/2020/06/25/Experiment1-DrawASquare/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xu Wenpeng/wpxu08@gmail.com">
@@ -263,7 +263,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">实验0.1 FreeGlut配置简介</h2>
+          <h2 class="post-title" itemprop="name headline">Experiment 1 Create A Square</h2>
         
 
         <div class="post-meta">
@@ -275,8 +275,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-20T08:42:34+08:00">
-                2020-05-20
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-06-25T07:33:00+08:00">
+                2020-06-25
               </time>
             
 
@@ -298,8 +298,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机图形学基础（第2版）/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机图形学基础（第2版）</span>
+                  <a href="/categories/Computer-Graphics/" itemprop="url" rel="index">
+                    <span itemprop="name">Computer Graphics</span>
                   </a>
                 </span>
 
@@ -366,15 +366,17 @@
       
 
       
-        <h2 id="1．FreeGlut简介："><a href="#1．FreeGlut简介：" class="headerlink" title="1．FreeGlut简介："></a>1．FreeGlut简介：</h2><p>先介绍下<strong>Glut库</strong>。GLUT最初由MarkKilgard编写，从OpenGL Redbook（红宝书）第二版起就用来作为示例程序的支持环境，直到第八版为止（注：第九版开始改为GLFW）。从那时起，GLUT因为其简单、可用性广、可移植性强，被广泛应用于各种OpenGL实际应用中。Glut最新版本为3.7版，大致在1998年8月停止维护和更新，同时其代码也没有开源。<br><a href="http://freeglut.sourceforge.net/" target="_blank" rel="noopener"><strong>Freeglut</strong></a>是Glut库(OpenGL Utility Toolkit，OpenGL实用工具包)的免费开源替代品。它是由Pawel W. Olszta在1999年12月创建，最新版本为2015年3月的3.0版本。</p>
-<h2 id="2-FreeGlut获取"><a href="#2-FreeGlut获取" class="headerlink" title="2. FreeGlut获取"></a>2. FreeGlut获取</h2><p>可以选择源码自己编译，也可以直接使用编译好的文件。<br>(1) 源码下载链接：<a href="http://prdownloads.sourceforge.net/freeglut/freeglut-3.0.0.tar.gz?download" target="_blank" rel="noopener">http://prdownloads.sourceforge.net/freeglut/freeglut-3.0.0.tar.gz?download</a><br>(2) 编译好的文件下载链接：<br><a href="https://www.transmissionzero.co.uk/software/freeglut-devel/" target="_blank" rel="noopener">https://www.transmissionzero.co.uk/software/freeglut-devel/</a><br>其中如果以VS为编程环境，可以直接下载上述链接页面中的MSVC包（“freeglut 3.0.0 MSVC Package”）。</p>
-<h2 id="3．FreeGlut配置"><a href="#3．FreeGlut配置" class="headerlink" title="3．FreeGlut配置"></a>3．FreeGlut配置</h2><p>下面以freeglut-MSVC.zip文件介绍FreeGlut在VS2017中的配置。<br><strong>(1) 头文件</strong><br>　　将freeglut\include\GL目录复制到 Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\include目录下;<br><strong>(2) 库文件</strong><br>　　将freeglut\lib\freeglut.lib文件复制到Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\lib\x86目录下;<br>　　将freeglut\lib\x64\freeglut.lib文件复制到Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\lib\x64目录下;<br><strong>(3) Dll文件</strong></p>
-<ul>
-<li>64位Windows系统：<br>　　将freeglut\bin\freeglut.dll文件复制到C:\Windows\SysWOW64目录下;<br>　　将freeglut\bin\x64\freeglut.dll文件复制到c:\Windows\System32目录下;</li>
-<li>32位Windows系统：<br>　　将freeglut\bin\freeglut.dll文件复制到c:\Windows\System32目录下;<h2 id="4．补充"><a href="#4．补充" class="headerlink" title="4．补充"></a>4．补充</h2>为防止出现“无法打开文件“freeglutd.lib””的错误，需要在代码文件中#include &lt;GL/glut.h&gt;语句前加上#define NDEBUG，如下所示：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#define NDEBUG </span><br><span class="line">#include &lt;GL/glut.h&gt;</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
-</li>
+        <h2 id="1-Experiment-goal"><a href="#1-Experiment-goal" class="headerlink" title="1. Experiment goal"></a>1. Experiment goal</h2><ul>
+<li>Understand experiment environment and the process of experiment;</li>
+<li>Learn how to draw a square and understand its vertex drawing order.</li>
 </ul>
-<p>原因请参考文章<a href="https://blog.csdn.net/csxiaoshui/article/details/78720651" target="_blank" rel="noopener">Freeglut中无法打开文件”freeglutd.lib”</a>。</p>
+<h2 id="2-Experiment-content"><a href="#2-Experiment-content" class="headerlink" title="2. Experiment content"></a>2. Experiment content</h2><p>Please do the following code exercises:</p>
+<ul>
+<li><a href="https://classroom.udacity.com/courses/cs291/lessons/91160556/concepts/923101370923" target="_blank" rel="noopener">Exercise 7 “First Programming Exercise” in  Lesson 2 Problem Set</a>;</li>
+<li><a href="https://classroom.udacity.com/courses/cs291/lessons/90856897/concepts/968210200923" target="_blank" rel="noopener">Exercise 13 “Create a Square” in Lesson 4 Points, Vectors, and Meshes</a>;</li>
+<li><a href="https://classroom.udacity.com/courses/cs291/lessons/90856897/concepts/968210230923" target="_blank" rel="noopener">Exercise 18 “Return of the Square” in Lesson 4 Points, Vectors, and Meshes</a>;</li>
+</ul>
+<h2 id="3-Experiment-report"><a href="#3-Experiment-report" class="headerlink" title="3. Experiment report"></a>3. Experiment report</h2><p>Please write experiment report based on experiment report templated according to your experiment process and submit it with the code file (fix-javascript-errors.js, triangle-mesh.js, vertex-order.js) to <a href="https://www.ketangpai.com/Course/homework/courseid/MDAwMDAwMDAwMLSGsZaGucmy.html" target="_blank" rel="noopener">the experiment assignment</a> on ketangpai platform .</p>
 
       
     </div>
@@ -400,7 +402,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/计算机图形学/" rel="tag"># 计算机图形学</a>
+            <a href="/tags/Computer-Graphics/" rel="tag"># Computer Graphics</a>
           
         </div>
       
@@ -413,8 +415,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/05/20/CG实验0.2 OpenGL程序创建与运行/" rel="next" title="实验0.2 OpenGL程序创建与运行">
-                <i class="fa fa-chevron-left"></i> 实验0.2 OpenGL程序创建与运行
+              <a href="/2020/05/20/CG实验0.1 FreeGlut配置简介/" rel="next" title="实验0.1 FreeGlut配置简介">
+                <i class="fa fa-chevron-left"></i> 实验0.1 FreeGlut配置简介
               </a>
             
           </div>
@@ -422,10 +424,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/06/25/Experiment1-DrawASquare/" rel="prev" title="Experiment 1 Create A Square">
-                Experiment 1 Create A Square <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -583,7 +581,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1．FreeGlut简介："><span class="nav-number">1.</span> <span class="nav-text">1．FreeGlut简介：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-FreeGlut获取"><span class="nav-number">2.</span> <span class="nav-text">2. FreeGlut获取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3．FreeGlut配置"><span class="nav-number">3.</span> <span class="nav-text">3．FreeGlut配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4．补充"><span class="nav-number">4.</span> <span class="nav-text">4．补充</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Experiment-goal"><span class="nav-number">1.</span> <span class="nav-text">1. Experiment goal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Experiment-content"><span class="nav-number">2.</span> <span class="nav-text">2. Experiment content</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Experiment-report"><span class="nav-number">3.</span> <span class="nav-text">3. Experiment report</span></a></li></ol></div>
             
 
           </div>
