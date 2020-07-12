@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Experiment 2 Simple Modeling]]></title>
+    <url>%2F2020%2F07%2F12%2FExperiment2-SimpleModeling%2F</url>
+    <content type="text"><![CDATA[1. Experiment goal Understand modeling process of simple objects; Learn how to model some simple 2D and 3D objects, such as a polygon, a stairway and a bird. 2. Experiment contentPlease do the following code exercises: Exercise 1 “Make a Polygon Creator” in Lesson 5 Problem Set; Exercise 2 “Move a Polygon to a Location” in Lesson 5 Problem Set; Exercise 3 “Change the Polygon’s Radius” in Lesson 5 Problem Set; Exercise 4 “Build a Stairway” in Lesson 5 Problem Set; Exercise 5 “Make a Drinking Bird’s Body” in Lesson 5 Problem Set; 3. Experiment reportPlease write experiment report based on experiment report templated according to your experiment process and submit it with the code file to the experiment assignment on ketangpai platform .]]></content>
+      <categories>
+        <category>Computer Graphics</category>
+      </categories>
+      <tags>
+        <tag>Computer Graphics</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Experiment 1 Create A Square]]></title>
     <url>%2F2020%2F06%2F25%2FExperiment1-DrawASquare%2F</url>
     <content type="text"><![CDATA[1. Experiment goal Understand experiment environment and the process of experiment; Learn how to draw a square and understand its vertex drawing order. 2. Experiment contentPlease do the following code exercises: Exercise 7 “First Programming Exercise” in Lesson 2 Problem Set; Exercise 13 “Create a Square” in Lesson 4 Points, Vectors, and Meshes; Exercise 18 “Return of the Square” in Lesson 4 Points, Vectors, and Meshes; 3. Experiment reportPlease write experiment report based on experiment report templated according to your experiment process and submit it with the code file (fix-javascript-errors.js, triangle-mesh.js, vertex-order.js) to the experiment assignment on ketangpai platform .]]></content>

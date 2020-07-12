@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="计算机图形学," />
+  <meta name="keywords" content="Computer Graphics," />
 
 
 
@@ -83,28 +83,18 @@
 
 
 
-<meta name="description" content="下列介绍与图示均以Microsoft Visual Studio Community 2017版本（下面简称为VS）为例，其它版本类似。 1. 创建控制台应用（1）点击：文件&amp;rarr;新建&amp;rarr;项目，如下图所示：选择“Visual C++ &amp;rarr; Windows桌面&amp;rarr;控制台应用”：在名称对应文本框中，修改工程名称为“HelloPoint”：点击“确定”，得到缺省工程结果，如">
-<meta name="keywords" content="计算机图形学">
+<meta name="description" content="1. Experiment goal Understand modeling process of simple objects; Learn how to model some simple 2D and 3D objects, such as a polygon, a stairway and a bird.  2. Experiment contentPlease do the follow">
+<meta name="keywords" content="Computer Graphics">
 <meta property="og:type" content="article">
-<meta property="og:title" content="实验0.2 OpenGL程序创建与运行">
-<meta property="og:url" content="http://wpxu08.com/2020/05/20/CG实验0.2 OpenGL程序创建与运行/index.html">
+<meta property="og:title" content="Experiment 2 Simple Modeling">
+<meta property="og:url" content="http://wpxu08.com/2020/07/12/Experiment2-SimpleModeling/index.html">
 <meta property="og:site_name" content="计算机图形学">
-<meta property="og:description" content="下列介绍与图示均以Microsoft Visual Studio Community 2017版本（下面简称为VS）为例，其它版本类似。 1. 创建控制台应用（1）点击：文件&amp;rarr;新建&amp;rarr;项目，如下图所示：选择“Visual C++ &amp;rarr; Windows桌面&amp;rarr;控制台应用”：在名称对应文本框中，修改工程名称为“HelloPoint”：点击“确定”，得到缺省工程结果，如">
+<meta property="og:description" content="1. Experiment goal Understand modeling process of simple objects; Learn how to model some simple 2D and 3D objects, such as a polygon, a stairway and a bird.  2. Experiment contentPlease do the follow">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200520054720575.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dweHUwOA==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200520054720489.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dweHUwOA==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200520060836182.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dweHUwOA==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200520060836189.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dweHUwOA==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200520060836201.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dweHUwOA==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200520060836208.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dweHUwOA==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200520060836202.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dweHUwOA==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200520075018132.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dweHUwOA==,size_16,color_FFFFFF,t_70#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200520060836185.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dweHUwOA==,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2020-05-20T02:53:42.768Z">
+<meta property="og:updated_time" content="2020-07-12T03:37:38.704Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="实验0.2 OpenGL程序创建与运行">
-<meta name="twitter:description" content="下列介绍与图示均以Microsoft Visual Studio Community 2017版本（下面简称为VS）为例，其它版本类似。 1. 创建控制台应用（1）点击：文件&amp;rarr;新建&amp;rarr;项目，如下图所示：选择“Visual C++ &amp;rarr; Windows桌面&amp;rarr;控制台应用”：在名称对应文本框中，修改工程名称为“HelloPoint”：点击“确定”，得到缺省工程结果，如">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200520054720575.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dweHUwOA==,size_16,color_FFFFFF,t_70">
+<meta name="twitter:title" content="Experiment 2 Simple Modeling">
+<meta name="twitter:description" content="1. Experiment goal Understand modeling process of simple objects; Learn how to model some simple 2D and 3D objects, such as a polygon, a stairway and a bird.  2. Experiment contentPlease do the follow">
 
 
 
@@ -134,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://wpxu08.com/2020/05/20/CG实验0.2 OpenGL程序创建与运行/"/>
+  <link rel="canonical" href="http://wpxu08.com/2020/07/12/Experiment2-SimpleModeling/"/>
 
 
 
 
 
-  <title>实验0.2 OpenGL程序创建与运行 | 计算机图形学</title>
+  <title>Experiment 2 Simple Modeling | 计算机图形学</title>
   
 
 
@@ -256,7 +246,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wpxu08.com/2020/05/20/CG实验0.2 OpenGL程序创建与运行/">
+    <link itemprop="mainEntityOfPage" href="http://wpxu08.com/2020/07/12/Experiment2-SimpleModeling/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xu Wenpeng/wpxu08@gmail.com">
@@ -273,7 +263,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">实验0.2 OpenGL程序创建与运行</h2>
+          <h2 class="post-title" itemprop="name headline">Experiment 2 Simple Modeling</h2>
         
 
         <div class="post-meta">
@@ -285,8 +275,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-20T05:11:26+08:00">
-                2020-05-20
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-12T11:37:54+08:00">
+                2020-07-12
               </time>
             
 
@@ -308,8 +298,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机图形学基础（第2版）/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机图形学基础（第2版）</span>
+                  <a href="/categories/Computer-Graphics/" itemprop="url" rel="index">
+                    <span itemprop="name">Computer Graphics</span>
                   </a>
                 </span>
 
@@ -376,11 +366,19 @@
       
 
       
-        <p>下列介绍与图示均以Microsoft Visual Studio Community 2017版本（下面简称为VS）为例，其它版本类似。</p>
-<h2 id="1-创建控制台应用"><a href="#1-创建控制台应用" class="headerlink" title="1. 创建控制台应用"></a>1. 创建控制台应用</h2><p>（1）点击：文件&rarr;新建&rarr;项目，如下图所示：<br><img src="https://img-blog.csdnimg.cn/20200520054720575.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dweHUwOA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>选择“Visual C++ &rarr; Windows桌面&rarr;控制台应用”：<br><img src="https://img-blog.csdnimg.cn/20200520054720489.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dweHUwOA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>在名称对应文本框中，修改工程名称为“HelloPoint”：<br><img src="https://img-blog.csdnimg.cn/20200520060836182.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dweHUwOA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>点击“确定”，得到缺省工程结果，如图所示：<br><img src="https://img-blog.csdnimg.cn/20200520060836189.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dweHUwOA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="2-生成解决方案，确认生成没有错误"><a href="#2-生成解决方案，确认生成没有错误" class="headerlink" title="2. 生成解决方案，确认生成没有错误"></a>2. 生成解决方案，确认生成没有错误</h2><p>(1) 点击菜单：生成&rarr;生成解决方案，如图所示：<br><img src="https://img-blog.csdnimg.cn/20200520060836201.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dweHUwOA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>(2) 观察VS下方“输出”窗口中提示：“生成：成功1个…”，确认生成没有错误，如下图所示：<br><img src="https://img-blog.csdnimg.cn/20200520060836208.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dweHUwOA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="3-OpenGL代码替换，解决方案重新生成、运行"><a href="#3-OpenGL代码替换，解决方案重新生成、运行" class="headerlink" title="3. OpenGL代码替换，解决方案重新生成、运行"></a>3. OpenGL代码替换，解决方案重新生成、运行</h2><p>在运行下面代码前，请先配置FreeGlut库，这是一个OpenGL程序的支持环境库，具体信息与配置方法请参考： <a href="https://blog.csdn.net/wpxu08/article/details/87785547" target="_blank" rel="noopener">FreeGlut配置简介</a>。<br>(1) 将原有缺省代码替换为下列OpenGL代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;GL/glut.h&gt;</span><br><span class="line">void myDisplay(void)</span><br><span class="line">&#123;</span><br><span class="line">	glClearColor(0.0, 0.0, 0.0, 0.0);</span><br><span class="line">	glClear(GL_COLOR_BUFFER_BIT);</span><br><span class="line"></span><br><span class="line">	glPointSize(3);</span><br><span class="line">	glBegin(GL_POINTS);</span><br><span class="line">	glColor3f(1.0f, 0.0f, 0.0f);   glVertex2f(-0.4f, -0.4f);</span><br><span class="line">	glColor3f(0.0f, 1.0f, 0.0f);   glVertex2f(0.0f, 0.0f);</span><br><span class="line">	glColor3f(0.0f, 0.0f, 1.0f);   glVertex2f(0.4f, 0.4f);</span><br><span class="line">	glEnd();</span><br><span class="line"></span><br><span class="line">	glFlush();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">	glutInit(&amp;argc, argv);</span><br><span class="line">	glutInitWindowPosition(100, 100);</span><br><span class="line">	glutInitWindowSize(400, 400);</span><br><span class="line">	glutCreateWindow(&quot;Hello Point!&quot;);</span><br><span class="line">	glutDisplayFunc(&amp;myDisplay);</span><br><span class="line">	glutMainLoop();</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>替换完成后并重新生成，结果如下图所示：<br><img src="https://img-blog.csdnimg.cn/20200520060836202.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dweHUwOA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>(2)运行程序，观察程序运行结果<br>点击菜单：调试&rarr;开始执行（不调试），如图所示：<br><img src="https://img-blog.csdnimg.cn/20200520075018132.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dweHUwOA==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>弹出两个窗口，其中一个窗口中显示红、绿、蓝三个点，即为程序运行结果，如图所示：<br> <img src="https://img-blog.csdnimg.cn/20200520060836185.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dweHUwOA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br> 至此，完成了一个简单的OpenGL程序创建与运行。</p>
+        <h2 id="1-Experiment-goal"><a href="#1-Experiment-goal" class="headerlink" title="1. Experiment goal"></a>1. Experiment goal</h2><ul>
+<li>Understand modeling process of simple objects;</li>
+<li>Learn how to model some simple 2D and 3D objects, such as a polygon, a stairway and a bird.</li>
+</ul>
+<h2 id="2-Experiment-content"><a href="#2-Experiment-content" class="headerlink" title="2. Experiment content"></a>2. Experiment content</h2><p>Please do the following code exercises:</p>
+<ul>
+<li><a href="https://classroom.udacity.com/courses/cs291/lessons/90856898/concepts/933097250923" target="_blank" rel="noopener">Exercise 1 “Make a Polygon Creator” in  Lesson 5 Problem Set</a>;</li>
+<li><a href="https://classroom.udacity.com/courses/cs291/lessons/90856898/concepts/933097260923" target="_blank" rel="noopener">Exercise 2 “Move a Polygon to a Location” in  Lesson 5 Problem Set</a>;</li>
+<li><a href="https://classroom.udacity.com/courses/cs291/lessons/90856898/concepts/933097270923" target="_blank" rel="noopener">Exercise 3 “Change the Polygon’s Radius” in  Lesson 5 Problem Set</a>;</li>
+<li><a href="https://classroom.udacity.com/courses/cs291/lessons/90856898/concepts/933097280923" target="_blank" rel="noopener">Exercise 4 “Build a Stairway” in  Lesson 5 Problem Set</a>;</li>
+<li><a href="https://classroom.udacity.com/courses/cs291/lessons/90856898/concepts/933097290923" target="_blank" rel="noopener">Exercise 5 “Make a Drinking Bird’s Body” in  Lesson 5 Problem Set</a>;</li>
+</ul>
+<h2 id="3-Experiment-report"><a href="#3-Experiment-report" class="headerlink" title="3. Experiment report"></a>3. Experiment report</h2><p>Please write experiment report based on experiment report templated according to your experiment process and submit it with the code file to <a href="https://www.ketangpai.com/Review/index/homeworkid/MDAwMDAwMDAwMLOGtZaGqc2xhdtyoQ.html" target="_blank" rel="noopener">the experiment assignment</a> on ketangpai platform .</p>
 
       
     </div>
@@ -406,7 +404,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/计算机图形学/" rel="tag"># 计算机图形学</a>
+            <a href="/tags/Computer-Graphics/" rel="tag"># Computer Graphics</a>
           
         </div>
       
@@ -419,8 +417,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/05/19/CG实验1 OpenGL初识/" rel="next" title="实验1 OpenGL初识">
-                <i class="fa fa-chevron-left"></i> 实验1 OpenGL初识
+              <a href="/2020/06/25/Experiment1-DrawASquare/" rel="next" title="Experiment 1 Create A Square">
+                <i class="fa fa-chevron-left"></i> Experiment 1 Create A Square
               </a>
             
           </div>
@@ -428,10 +426,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/05/20/CG实验0.1 FreeGlut配置简介/" rel="prev" title="实验0.1 FreeGlut配置简介">
-                实验0.1 FreeGlut配置简介 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -589,7 +583,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-创建控制台应用"><span class="nav-number">1.</span> <span class="nav-text">1. 创建控制台应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-生成解决方案，确认生成没有错误"><span class="nav-number">2.</span> <span class="nav-text">2. 生成解决方案，确认生成没有错误</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-OpenGL代码替换，解决方案重新生成、运行"><span class="nav-number">3.</span> <span class="nav-text">3. OpenGL代码替换，解决方案重新生成、运行</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Experiment-goal"><span class="nav-number">1.</span> <span class="nav-text">1. Experiment goal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Experiment-content"><span class="nav-number">2.</span> <span class="nav-text">2. Experiment content</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Experiment-report"><span class="nav-number">3.</span> <span class="nav-text">3. Experiment report</span></a></li></ol></div>
             
 
           </div>
